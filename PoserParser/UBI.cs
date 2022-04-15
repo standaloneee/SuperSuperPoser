@@ -10,6 +10,7 @@
         public string ConfidentialCheck { get; }
         public string IntegrityCheck { get; }
         public string AccessibiltiyCheck { get; }
+        public bool edited = false;
 
 		public UBIFull(string iD, string name, string description, string hazardSource, string hazardObject, string confidentialCheck, string integrityCheck, string accessibiltiyCheck)
 		{

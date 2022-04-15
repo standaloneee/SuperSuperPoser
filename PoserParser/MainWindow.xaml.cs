@@ -145,8 +145,10 @@ namespace PoserParser
                                 props += i2.Value.AccessibiltiyCheck + "/";
                             //props = props.Remove(props.Length - 1);
 
-                            changes.Add(i1.Key, props);
-                            changed.Add(i2.Value);
+                            i2.Value.edited = true;
+                            changes.Add(i1.Key, "Edited");
+                            //changes.Add(i1.Key, props);
+                            //changed.Add(i2.Value);
                             changed.Add(i1.Value);
                         }
                     }
@@ -195,8 +197,8 @@ namespace PoserParser
 
                 this.cview = new PagingCollectionView(dataBase.shortDB, elmCount);
                 this.DataContext = this.cview;
-                //File.Delete(@"thrlist.xlsx");
-                //File.Move(@"newthrlist.xlsx", @"thrlist.xlsx"); // комменнт для теста
+                File.Delete(@"thrlist.xlsx");
+                File.Move(@"newthrlist.xlsx", @"thrlist.xlsx"); // комменнт для теста
             }
             catch (Exception ex)
             {

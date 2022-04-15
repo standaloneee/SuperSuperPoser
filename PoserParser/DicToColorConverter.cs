@@ -12,40 +12,39 @@ namespace PoserParser
 		public static Dictionary<int, string> ids = new Dictionary<int, string>();
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-            object ret = "";
-            var x = value;
+            //object ret = "";
+            //var x = value;
             //if (x.ToString().Contains("111"))
             //{
             //    return System.Windows.Media.Brushes.LightBlue;
             //}
-            foreach (var item in ids)
-            {
-                string temp = item.Value;
-                temp = temp.Replace("/", "");
-                if (x.ToString() == temp)
-                {
-                    ret = Brushes.LightYellow;
-                }
-            }
-            return ret;
-            
-
-
-            //if (int.TryParse(value.ToString(), out int id))
+            //foreach (var item in ids)
             //{
-            //    switch (ids[id])
+            //    string temp = item.Value;
+            //    temp = temp.Replace("/", "");
+            //    if (x.ToString() == temp)
             //    {
-            //        case "Added":
-            //            return new SolidColorBrush(Colors.LightGreen);
-            //        case "Deleted":
-            //            return new SolidColorBrush(Colors.Red);
-            //        default:
-            //            //if(ids[id].Contains("/"))
-            //            return Brushes.LightYellow;
+            //        ret = Brushes.LightYellow;
             //    }
             //}
-            //else
-            //    return null;
+            //return ret;
+
+
+
+            if (int.TryParse(value.ToString(), out int id))
+            {
+                switch (ids[id])
+                {
+                    case "Added":
+                        return new SolidColorBrush(Colors.LightGreen);
+                    case "Deleted":
+                        return new SolidColorBrush(Colors.Red);
+                    default:
+                        return Brushes.LightYellow;
+                }
+            }
+            else
+                return null;
 
             //else
             //{
