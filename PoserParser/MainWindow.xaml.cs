@@ -95,9 +95,9 @@ namespace PoserParser
             this.cview.MoveToPreviousPage();
         }
 
-        async private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            await Task.Delay(3000);
+            
             ComboBoxItem comboBoxItem = ((sender as ComboBox).SelectedItem as ComboBoxItem);
             elmCount = int.Parse(comboBoxItem.Content.ToString());
             cview.ItemsPerPage = elmCount;
