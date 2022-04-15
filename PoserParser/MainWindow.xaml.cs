@@ -47,8 +47,15 @@ namespace PoserParser
             catch (Exception)
             {
                 MessageBox.Show($"Базы данных на данном устройстве не обнаружено! База данных будет загружена с сервера!", "Уведомление");
+                try
+                {
                 new WebClient().DownloadFile(address, "thrlist.xlsx");
                 WsParse(new XLWorkbook(@"thrlist.xlsx").Worksheet("Sheet"), ref dataBase.shortDB, ref dataBase.fullDB);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка:" + ex.Message);
+                }
 
             }
 
@@ -193,7 +200,7 @@ namespace PoserParser
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Косяндепало: " + ex.Message);
+                MessageBox.Show("Ошибка: " + ex.Message);
                 File.Delete(@"newthrlist.xlsx");
                 WsParse(new XLWorkbook(@"thrlist.xlsx").Worksheet("Sheet"), ref dataBase.shortDB, ref dataBase.fullDB);
             }
