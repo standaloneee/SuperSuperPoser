@@ -197,8 +197,8 @@ namespace PoserParser
 
                 this.cview = new PagingCollectionView(dataBase.shortDB, elmCount);
                 this.DataContext = this.cview;
-                File.Delete(@"thrlist.xlsx");
-                File.Move(@"newthrlist.xlsx", @"thrlist.xlsx"); // комменнт для теста
+                //File.Delete(@"thrlist.xlsx");
+                //File.Move(@"newthrlist.xlsx", @"thrlist.xlsx"); // комменнт для теста
             }
             catch (Exception ex)
             {
