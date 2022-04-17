@@ -29,6 +29,7 @@ namespace PoserParser
     /// 
     public partial class MainWindow : Window
     {
+        public static EditHistory editHistory = new EditHistory();
         const string address = "https://bdu.fstec.ru/files/documents/thrlist.xlsx";
         public List<UBIFull> History = new List<UBIFull>();
         private PagingCollectionView cview;
@@ -121,6 +122,7 @@ namespace PoserParser
 
                 var changes = new Dictionary<int, string>();
                 var changed = new List<UBIFull>();
+                var changed2 = new List<UBIFull>();
 
                 foreach (var i1 in dataBase.fullDB)
                 {
@@ -148,9 +150,12 @@ namespace PoserParser
                             i2.Value.edited = true;
                             changes.Add(i1.Key, "Edited");
                             //changes.Add(i1.Key, props);
-                            //changed.Add(i2.Value);
+                            changed2.Add(i2.Value);
                             changed.Add(i1.Value);
+                            editHistory.DataContext = changed2;
+                            //editHistory.Show();
                         }
+                    
                     }
                     if (!old.fullDB.ContainsKey(i1.Key)) //Добавленные
                     {
@@ -174,7 +179,8 @@ namespace PoserParser
                 }
                 else
                 {
-                    var result = MessageBox.Show($"Кол-во обновленных записей: {changes.Count}\n\n" +
+                   
+                    var result = MessageBox.Show($"База данных успешно загружена!\n\nКол-во обновленных записей: {changes.Count}\n\n" +
                       $"Желаете ли вы посмотреть подробный отчет?", "Отчет", MessageBoxButton.YesNo);
                     if (result == MessageBoxResult.Yes)
                     {
@@ -199,6 +205,7 @@ namespace PoserParser
                 this.DataContext = this.cview;
                 //File.Delete(@"thrlist.xlsx");
                 //File.Move(@"newthrlist.xlsx", @"thrlist.xlsx"); // комменнт для теста
+
             }
             catch (Exception ex)
             {
@@ -230,7 +237,13 @@ namespace PoserParser
             fullinfo.DataContext = smth;
             fullinfo.Show();
         }
-
+        void Mover(SaveFileDialog dd)
+        {
+            File.Copy(@"thrlist.xlsx", @"thrlist_.xlsx");
+            File.Replace(@"thrlist.xlsx", $@"{dd.SafeFileName}", @"backup.xlsx");
+            File.Move(@"thrlist_.xlsx", @"thrlist.xlsx");
+            File.Delete(@"backup.xlsx");
+        }
         private void Button_Save(object sender, RoutedEventArgs e)
         {
             Stream myStream;
@@ -241,9 +254,13 @@ namespace PoserParser
 
             try
             {
+                
                 save.ShowDialog();
-                if ((myStream = save.OpenFile()) != null)
-                    myStream.Close();
+                if ((myStream = save.OpenFile()) != null)                    
+                {
+                    myStream.Close(); 
+                }
+                Mover(save);
             }
             catch (Exception) { }
         }

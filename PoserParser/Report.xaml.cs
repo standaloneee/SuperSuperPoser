@@ -19,5 +19,10 @@ namespace PoserParser
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void EditHistoryClick(object sender, RoutedEventArgs e)
+        {
+			MainWindow.editHistory.Show();
+        }
+    }
 }

@@ -76,6 +76,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DicToColorConverter.cs" />
+    <Compile Include="EditHistory.xaml.cs">
+      <DependentUpon>EditHistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FullInfo.xaml.cs">
       <DependentUpon>FullInfo.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,10 @@
       <DependentUpon>Report.xaml</DependentUpon>
     </Compile>
     <Compile Include="UBI.cs" />
+    <Page Include="EditHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FullInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
