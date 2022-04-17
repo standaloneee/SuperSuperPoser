@@ -30,6 +30,7 @@ namespace PoserParser
     public partial class MainWindow : Window
     {
         public static EditHistory editHistory = new EditHistory();
+        public static List<UBIFull> changed2 = new List<UBIFull>();
         const string address = "https://bdu.fstec.ru/files/documents/thrlist.xlsx";
         public List<UBIFull> History = new List<UBIFull>();
         private PagingCollectionView cview;
@@ -122,7 +123,6 @@ namespace PoserParser
 
                 var changes = new Dictionary<int, string>();
                 var changed = new List<UBIFull>();
-                var changed2 = new List<UBIFull>();
 
                 foreach (var i1 in dataBase.fullDB)
                 {
@@ -152,8 +152,6 @@ namespace PoserParser
                             //changes.Add(i1.Key, props);
                             changed2.Add(i2.Value);
                             changed.Add(i1.Value);
-                            editHistory.DataContext = changed2;
-                            //editHistory.Show();
                         }
                     
                     }

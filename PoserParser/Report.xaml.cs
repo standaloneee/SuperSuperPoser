@@ -22,7 +22,9 @@ namespace PoserParser
 
         private void EditHistoryClick(object sender, RoutedEventArgs e)
         {
-			MainWindow.editHistory.Show();
+			EditHistory	edit = new EditHistory();
+			edit.DataContext = MainWindow.changed2;
+			edit.Show();
         }
     }
 }
